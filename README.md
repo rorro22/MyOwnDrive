@@ -24,6 +24,14 @@ La aplicación utiliza un sistema de autenticación con tokens y autenticación 
 ### Escalabilidad y Redundancia
 My Own Drive está diseñado para ser escalable y redundante, lo que garantiza un alto rendimiento y disponibilidad.
 
+## Lenguajes y Tecnologías Utilizadas
+
+- **GOLang:** Para el desarrollo del servidor.
+- **JavaScript:** Para la programación del cliente.
+- **WebSockets:** Utilizados para la comunicación en tiempo real.
+- **Airtable:** Base de datos utilizada para almacenar datos de usuarios y permisos.
+- **Otras tecnologías o bibliotecas:** Puedes listar aquí cualquier otra tecnología relevante utilizada en tu proyecto.
+
 ## Comunicación mediante WebSockets
 
 La aplicación utiliza WebSockets para establecer una comunicación en tiempo real entre el servidor y el cliente. Esto permite la carga de archivos, sincronización de cambios y notificaciones de eventos importantes. La comunicación es segura y cifrada para proteger la privacidad y la integridad de los datos.
