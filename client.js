@@ -1,28 +1,19 @@
 const WebSocket = require('ws');
 const fs = require('fs');
-const path = require('path'); // Agrega esta línea
+const path = require('path');
 
 const socket = new WebSocket('ws://localhost:8080');
 
 socket.on('open', function open() {
     console.log('Conectado al servidor WebSocket');
-    
-    // Leer el archivo y obtener su nombre y extensión
-    const filePath = 'C:/Users/Suspect/Desktop/GOLang/servidor/RCV_CV.docx'; // Reemplaza con la ruta de tu archivo
+
+    const filePath = 'C:/Users/Suspect/Desktop/GOLang/servidor/RCV_CV.docx';
     const data = fs.readFileSync(filePath);
     console.log('Datos leídos del archivo:', data);
-    const fileName = path.basename(filePath); // Obtiene el nombre del archivo
-    const fileExtension = path.extname(filePath).slice(1); // Obtiene la extensión del archivo
-    
-    // Crear un objeto para enviar tanto los datos como la información del archivo
-    const fileData = {
-        name: fileName,
-        extension: fileExtension,
-        data: Array.from(data)
-    };
-    
-    // Enviar los datos como un mensaje binario al servidor
-    socket.send(JSON.stringify(fileData));
+
+    // Enviar los datos binarios al servidor
+    socket.send(data);
+
     console.log('Archivo enviado al servidor');
 });
 
