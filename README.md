@@ -6,7 +6,7 @@ My Own Drive es una aplicación de almacenamiento en la nube que ofrece una ampl
 
 ## Características Destacadas
 
-## Lenguajes y Tecnologías Utilizadas
+### Lenguajes y Tecnologías Utilizadas
 
 - **GOLang:** Para el desarrollo del servidor.
 - **JavaScript:** Para la programación del cliente.
