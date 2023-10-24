@@ -7,6 +7,11 @@ const socket = new WebSocket('ws://localhost:8080');
 socket.on('open', function open() {
     console.log('Conectado al servidor WebSocket');
 
+    const token = 'FG5D41G653DS14';
+
+    // Enviar usuario y contraseña al servidor
+    socket.send(JSON.stringify({ token }));
+
     const filePath = 'C:/Users/Suspect/Desktop/GOLang/servidor/RCV_CV.docx';
     const data = fs.readFileSync(filePath);
     console.log('Datos leídos del archivo:', data);

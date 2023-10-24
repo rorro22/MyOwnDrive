@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -13,6 +14,11 @@ import (
 var validTokens = map[string]bool{
 	"FG5D41G653DS14":     true,
 	"15DSF64S3D1SFD5436": true,
+}
+
+var credentials = map[string]string{
+	"usuario1": "Rodrigo",
+	"usuario2": "cisco",
 }
 
 var upgrader = websocket.Upgrader{
@@ -38,13 +44,20 @@ func handleConnection(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token := string(p)
-	if !validTokens[token] {
+	var message map[string]string
+	err = json.Unmarshal(p, &message)
+	if err != nil {
+		fmt.Println("Error al analizar el mensaje JSON:", err)
+		return
+	}
+
+	token, ok := message["token"]
+	if !ok || !validTokens[token] {
 		fmt.Println("Token no válido")
 		return
 	}
 
-	fmt.Println("Cliente conectado")
+	fmt.Println("Cliente autentificado")
 
 	for {
 		messageType, data, err := conn.ReadMessage()
