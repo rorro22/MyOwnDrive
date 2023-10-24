@@ -6,6 +6,14 @@ My Own Drive es una aplicación de almacenamiento en la nube que ofrece una ampl
 
 ## Características Destacadas
 
+## Lenguajes y Tecnologías Utilizadas
+
+- **GOLang:** Para el desarrollo del servidor.
+- **JavaScript:** Para la programación del cliente.
+- **WebSockets:** Utilizados para la comunicación en tiempo real.
+- **Airtable:** Base de datos utilizada para almacenar datos de usuarios y permisos.
+- **Otras tecnologías o bibliotecas:** Puedes listar aquí cualquier otra tecnología relevante utilizada en tu proyecto.
+
 ### Almacenamiento de Archivos
 My Own Drive permite a los usuarios cargar, descargar y organizar archivos en un sistema de archivos jerárquico. Los archivos son almacenados de forma segura y se pueden acceder desde cualquier lugar en cualquier momento.
 
@@ -23,14 +31,6 @@ La aplicación utiliza un sistema de autenticación con tokens y autenticación 
 
 ### Escalabilidad y Redundancia
 My Own Drive está diseñado para ser escalable y redundante, lo que garantiza un alto rendimiento y disponibilidad.
-
-## Lenguajes y Tecnologías Utilizadas
-
-- **GOLang:** Para el desarrollo del servidor.
-- **JavaScript:** Para la programación del cliente.
-- **WebSockets:** Utilizados para la comunicación en tiempo real.
-- **Airtable:** Base de datos utilizada para almacenar datos de usuarios y permisos.
-- **Otras tecnologías o bibliotecas:** Puedes listar aquí cualquier otra tecnología relevante utilizada en tu proyecto.
 
 ## Comunicación mediante WebSockets
 
