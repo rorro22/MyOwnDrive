@@ -21,8 +21,9 @@ func UploadHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// ACTUALIZAR FUNCIONALIDAD DE GUARDAR DOCUMENTOS PARA
-	//		USAR NUEVO LIBRERIA GO
-	//		GUARDAR CORRECTAMENTE LOS DOCUMENTOS (hacer un cliente de prueba o peticiones postman)
+	//		USAR NUEVO LIBRERIA GO.
+	//		GUARDAR CORRECTAMENTE LOS DOCUMENTOS (hacer un cliente de prueba o peticiones postman).
+	//		GUARDAR LOS DOCUMENTOS DENTRO DEL FOLDER DEL USUARIO "./docs/JorgeNava/".
 	err = ioutil.WriteFile("./docs/"+fileUpload.FileName, fileUpload.FileContent, 0644)
 	if err != nil {
 		http.Error(w, "Error saving file", http.StatusInternalServerError)

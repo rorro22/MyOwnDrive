@@ -14,9 +14,9 @@ type FileDetail struct {
 
 func FetchFilesHandler(w http.ResponseWriter, r *http.Request) {
 	// ACTUALIZAR FUNCIONALIDAD DE REGRESAR DOCUMENTOS PARA
-	//		USAR NUEVO LIBRERIA GO
-	//		REGRESAR CORRECTAMENTE LA EXTENSION DEL DOCUMENTO
-	//		OBTENER Y REGRESAR LOS DATOS BINARIOS DEL DOCUMENTO (revisar si en GO podemos usar archivos Blob para facilitar esto)
+	//		USAR NUEVO LIBRERIA GO.
+	//		REGRESAR CORRECTAMENTE LA EXTENSION DEL DOCUMENTO.
+	//		OBTENER Y REGRESAR LOS DATOS BINARIOS DEL DOCUMENTO (revisar si en GO podemos usar archivos Blob para facilitar esto).
 	files, err := ioutil.ReadDir("./docs")
 	if err != nil {
 		http.Error(w, "Error reading files", http.StatusInternalServerError)
