@@ -1,34 +1,46 @@
 package handlers
 
 import (
+	"encoding/base64"
 	"encoding/json"
-	"io/ioutil"
+	"fmt"
 	"net/http"
+	"os"
+	"path/filepath"
 )
 
-type FileUpload struct {
-	FileName    string `json:"fileName"`
-	FileType    string `json:"fileType"`
-	FileContent []byte `json:"fileContent"`
+type FilePayload struct {
+	Filename string `json:"filename"`
+	Data     string `json:"data"`
 }
 
 func UploadHandler(w http.ResponseWriter, r *http.Request) {
-	var fileUpload FileUpload
-	err := json.NewDecoder(r.Body).Decode(&fileUpload)
-	if err != nil {
-		http.Error(w, "Invalid request", http.StatusBadRequest)
+	var payload FilePayload
+	if err := json.NewDecoder(r.Body).Decode(&payload); err != nil {
+		http.Error(w, "Failed to decode request body", http.StatusBadRequest)
 		return
 	}
 
-	// ACTUALIZAR FUNCIONALIDAD DE GUARDAR DOCUMENTOS PARA
-	//		USAR NUEVO LIBRERIA GO.
-	//		GUARDAR CORRECTAMENTE LOS DOCUMENTOS (hacer un cliente de prueba o peticiones postman).
-	//		GUARDAR LOS DOCUMENTOS DENTRO DEL FOLDER DEL USUARIO "./docs/JorgeNava/".
-	err = ioutil.WriteFile("./docs/"+fileUpload.FileName, fileUpload.FileContent, 0644)
+	data, err := base64.StdEncoding.DecodeString(payload.Data)
 	if err != nil {
-		http.Error(w, "Error saving file", http.StatusInternalServerError)
+		http.Error(w, "Failed to decode base64 data", http.StatusBadRequest)
 		return
 	}
 
-	w.Write([]byte("File uploaded successfully"))
+	// Ensure the "docs" directory exists
+	if err := os.MkdirAll("docs", 0755); err != nil {
+		http.Error(w, "Failed to create the docs directory", http.StatusInternalServerError)
+		return
+	}
+
+	// Construct the full file path
+	filePath := filepath.Join("docs", payload.Filename)
+
+	err = os.WriteFile(filePath, data, 0644)
+	if err != nil {
+		http.Error(w, "Failed to save the file", http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintln(w, "File uploaded and saved!")
 }
